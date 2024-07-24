@@ -404,7 +404,6 @@ class Serial(SerialBase):
         Open port with current settings. This may throw a SerialException
         if the port cannot be opened.
         """
-        self.logger = None
         self._ignore_set_control_answer = False
         self._poll_modem_state = False
         self._network_timeout = 3
