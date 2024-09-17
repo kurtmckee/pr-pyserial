@@ -337,7 +337,7 @@ def iterate_comports():
 
                     # Check that the USB serial number only contains alphanumeric characters. It
                     # may be a windows device ID (ephemeral ID) for composite devices.
-                    if m.group(7) and re.match(r'^\w+$', m.group(7)):
+                    if m.group(7) and re.match(r'^[\w-]+$', m.group(7)):
                         info.serial_number = m.group(7)
                     else:
                         info.serial_number = get_parent_serial_number(devinfo.DevInst, info.vid, info.pid)
