@@ -71,6 +71,11 @@ def main():
         help='suppress all messages')
 
     parser.add_argument(
+        '-1', '--only-one',
+        action='store_true',
+        help='require exactly one matching entry, otherwise error')
+
+    parser.add_argument(
         '-n',
         type=int,
         help='only output the N-th entry')
@@ -82,25 +87,36 @@ def main():
 
     args = parser.parse_args()
 
-    hits = 0
-    # get iteraror w/ or w/o filter
+    # get list of ports
     if args.regexp:
         if not args.quiet:
             sys.stderr.write("Filtered list with regexp: {!r}\n".format(args.regexp))
-        iterator = sorted(grep(args.regexp, include_links=args.include_links))
+        found = list(grep(args.regexp, include_links=args.include_links))
     else:
-        iterator = sorted(comports(include_links=args.include_links))
-    # list them
-    for n, (port, desc, hwid) in enumerate(iterator, 1):
-        if args.n is None or args.n == n:
-            sys.stdout.write("{:20}\n".format(port))
-            if args.verbose:
-                sys.stdout.write("    desc: {}\n".format(desc))
-                sys.stdout.write("    hwid: {}\n".format(hwid))
-        hits += 1
+        found = list(comports(include_links=args.include_links))
+    found.sort()
+
+    # filter ports if specified
+    if args.only_one and len(found) != 1:
+        sys.stderr.write("Error: {} serial ports{}{}{}\n".format(
+            len(found) or "no",
+            " match {!r}".format(args.regexp) if args.regexp else "",
+            ": {}, {}".format(found[0][0], found[1][0]) if found else "",
+            ", ..." if len(found) > 2 else ""
+        ))
+        sys.exit(1)
+    if args.n is not None:
+        found = [found[n - 1]] if 1 <= args.n <= len(found) else []
+
+    # list ports
+    for port, desc, hwid in found:
+        sys.stdout.write("{:20}\n".format(port))
+        if args.verbose:
+            sys.stdout.write("    desc: {}\n".format(desc))
+            sys.stdout.write("    hwid: {}\n".format(hwid))
     if not args.quiet:
-        if hits:
-            sys.stderr.write("{} ports found\n".format(hits))
+        if found:
+            sys.stderr.write("{} ports found\n".format(len(found)))
         else:
             sys.stderr.write("no ports found\n")
 
