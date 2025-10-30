@@ -97,7 +97,7 @@ Download the archive from http://pypi.python.org/pypi/pyserial or
 https://github.com/pyserial/pyserial/releases.
 Unpack the archive, enter the ``pyserial-x.y`` directory and run::
 
-    python setup.py install
+    pip install .
 
 Using the `python`/`python3` executable of the desired version (2.7/3.x).
 

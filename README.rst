@@ -33,7 +33,6 @@ Installation
 
 Detailed information can be found in `documentation/pyserial.rst`_.
 
-The usual setup.py for Python_ libraries is used for the source distribution.
 Windows installers are also available (see download link above).
 
 or
