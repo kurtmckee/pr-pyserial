@@ -823,3 +823,12 @@ Bugfixes (MacOS):
 
 - [#542] list_ports_osx: kIOMasterPortDefault no longer exported on Big Sur
 - [#545, #545] list_ports_osx: getting USB info on BigSur/AppleSilicon
+
+
+Unreleased
+----------
+
+Python support:
+
+- Support Python 3.10 and higher.
+- Drop support for all EOL Python versions (Python 3.9 and lower).
