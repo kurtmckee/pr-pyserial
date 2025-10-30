@@ -71,8 +71,8 @@ Application works when .py file is run, but fails when packaged (py2exe etc.)
       at runtime. If this function is used, the desired handlers have to be
       included manually (e.g. 'serial.urlhandler.protocol_socket',
       'serial.urlhandler.protocol_rfc2217', etc.). This can be done either with
-      the "includes" option in ``setup.py`` or by a dummy import in one of the
-      packaged modules.
+      the "includes" option in the packaging tool configuration or by a dummy
+      import in one of the packaged modules.
 
 User supplied URL handlers
     :func:`serial.serial_for_url` can be used to access "virtual" serial ports
