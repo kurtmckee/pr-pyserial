@@ -1,6 +1,6 @@
-=================================
- pySerial  |build-status| |docs|
-=================================
+=================
+ pySerial  |docs|
+=================
 
 Overview
 ========
@@ -47,9 +47,6 @@ conda builds are available for linux, mac and windows.
 .. _examples: https://github.com/pyserial/pyserial/blob/master/examples
 .. _Python: http://python.org/
 .. _Sphinx: http://sphinx-doc.org/
-.. |build-status| image:: https://travis-ci.org/pyserial/pyserial.svg?branch=master
-   :target: https://travis-ci.org/pyserial/pyserial
-   :alt: Build status
 .. |docs| image:: https://readthedocs.org/projects/pyserial/badge/?version=latest
    :target: http://pyserial.readthedocs.io/
    :alt: Documentation
