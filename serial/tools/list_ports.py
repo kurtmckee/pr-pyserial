@@ -25,11 +25,11 @@ import re
 # chose an implementation, depending on os
 #~ if sys.platform == 'cli':
 #~ else:
-if os.name == 'nt':  # sys.platform == 'win32':
+if os.name == 'nt':  # sys.platform == 'win32':  # pragma: no cover
     from serial.tools.list_ports_windows import comports
-elif os.name == 'posix':
+elif os.name == 'posix':  # pragma: no cover
     from serial.tools.list_ports_posix import comports
-else:
+else:  # pragma: no cover
     raise ImportError("Sorry: no implementation for your platform ('{}') available".format(os.name))
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -105,7 +105,7 @@ def main():
         ))
         sys.exit(1)
     if args.n is not None:
-        found = [found[n - 1]] if 1 <= args.n <= len(found) else []
+        found = [found[args.n - 1]] if 1 <= args.n <= len(found) else []
 
     # list ports
     for port, desc, hwid in found:
@@ -121,5 +121,5 @@ def main():
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # test
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     main()
