@@ -81,7 +81,7 @@ if plat[:5] == 'linux':    # Linux (confirmed)  # noqa
     CMSPAR = 0o10000000000  # Use "stick" (mark/space) parity
 
     # baudrate ioctls
-    if "mips" in platform.machine().lower():
+    if platform.machine().startswith('mips'):
         TCGETS2 = 0x4030542A
         TCSETS2 = 0x8030542B
         BAUDRATE_OFFSET = 10
