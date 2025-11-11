@@ -591,7 +591,7 @@ class Serial(SerialBase, PlatformSpecific):
                 # OSError ignore BlockingIOErrors and EINTR. other errors are shown
                 # https://www.python.org/dev/peps/pep-0475.
                 if e.errno not in (errno.EAGAIN, errno.EALREADY, errno.EWOULDBLOCK, errno.EINPROGRESS, errno.EINTR):
-                    raise SerialException('read failed: {}'.format(e))
+                    raise SerialException(e.errno, f'read failed: {e}')
             except select.error as e:
                 # this is for Python 2.x
                 # ignore BlockingIOErrors and EINTR. all errors are shown
@@ -665,7 +665,7 @@ class Serial(SerialBase, PlatformSpecific):
                 # OSError ignore BlockingIOErrors and EINTR. other errors are shown
                 # https://www.python.org/dev/peps/pep-0475.
                 if e.errno not in (errno.EAGAIN, errno.EALREADY, errno.EWOULDBLOCK, errno.EINPROGRESS, errno.EINTR):
-                    raise SerialException('write failed: {}'.format(e))
+                    raise SerialException(e.errno, f'write failed: {e}')
             except select.error as e:
                 # this is for Python 2.x
                 # ignore BlockingIOErrors and EINTR. all errors are shown
