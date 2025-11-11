@@ -97,7 +97,7 @@ mode, it is advised to use io.TextIOWrapper_::
         print(hello == "hello\n")
 
 
-.. _io.TextIOWrapper: http://docs.python.org/library/io.html#io.TextIOWrapper
+.. _io.TextIOWrapper: https://docs.python.org/3/library/io.html#io.TextIOWrapper
 
 
 Testing ports
