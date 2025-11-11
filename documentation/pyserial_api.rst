@@ -569,15 +569,6 @@ Native ports
     .. warning:: Programs using the following methods and attributes are not
                  portable to other platforms!
 
-    .. method:: nonblocking()
-
-        :platform: Posix
-
-        .. deprecated:: 3.2
-           The serial port is already opened in this mode. This method is not
-           needed and going away.
-
-
     .. method:: fileno()
 
         :platform: Posix
@@ -640,100 +631,6 @@ Native ports
         On Posix a call to `cancel_write()` may cancel a future :meth:`write` call.
 
         .. versionadded:: 3.1
-
-    .. note:: The following members are deprecated and will be removed in a
-              future release.
-
-    .. attribute:: portstr
-
-        .. deprecated:: 2.5 use :attr:`name` instead
-
-    .. method:: inWaiting()
-
-        .. deprecated:: 3.0 see :attr:`in_waiting`
-
-    .. method:: isOpen()
-
-        .. deprecated:: 3.0 see :attr:`is_open`
-
-    .. attribute:: writeTimeout
-
-        .. deprecated:: 3.0 see :attr:`write_timeout`
-
-    .. attribute:: interCharTimeout
-
-        .. deprecated:: 3.0 see :attr:`inter_byte_timeout`
-
-    .. method:: sendBreak(duration=0.25)
-
-        .. deprecated:: 3.0 see :meth:`send_break`
-
-    .. method:: flushInput()
-
-        .. deprecated:: 3.0 see :meth:`reset_input_buffer`
-
-    .. method:: flushOutput()
-
-        .. deprecated:: 3.0 see :meth:`reset_output_buffer`
-
-    .. method:: setBreak(level=True)
-
-        .. deprecated:: 3.0 see :attr:`break_condition`
-
-    .. method:: setRTS(level=True)
-
-        .. deprecated:: 3.0 see :attr:`rts`
-
-    .. method:: setDTR(level=True)
-
-        .. deprecated:: 3.0 see :attr:`dtr`
-
-    .. method:: getCTS()
-
-        .. deprecated:: 3.0 see :attr:`cts`
-
-    .. method:: getDSR()
-
-        .. deprecated:: 3.0 see :attr:`dsr`
-
-    .. method:: getRI()
-
-        .. deprecated:: 3.0 see :attr:`ri`
-
-    .. method:: getCD()
-
-        .. deprecated:: 3.0 see :attr:`cd`
-
-    .. method:: getSettingsDict()
-
-        .. deprecated:: 3.0 see :meth:`get_settings`
-
-    .. method:: applySettingsDict(d)
-
-        .. deprecated:: 3.0 see :meth:`apply_settings`
-
-    .. method:: outWaiting()
-
-        .. deprecated:: 3.0 see :attr:`out_waiting`
-
-    .. method:: setXON(level=True)
-
-        .. deprecated:: 3.0 see :meth:`set_output_flow_control`
-
-    .. method:: flowControlOut(enable)
-
-        .. deprecated:: 3.0 see :meth:`set_input_flow_control`
-
-    .. attribute:: rtsToggle
-
-        :platform: Windows
-
-        Attribute to configure RTS toggle control setting. When enabled and
-        supported by OS, RTS will be active when data is available and inactive
-        if no data is available.
-
-        .. versionadded:: 2.6
-        .. versionchanged:: 3.0 (removed, see :attr:`rs485_mode` instead)
 
 
 Implementation detail: some attributes and functions are provided by the

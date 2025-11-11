@@ -59,10 +59,10 @@ class Serial(SerialBase):
             raise SerialException("Port is already open.")
         try:
             # timeout is used for write timeout support :/ and to get an initial connection timeout
-            self._socket = socket.create_connection(self.from_url(self.portstr), timeout=POLL_TIMEOUT)
+            self._socket = socket.create_connection(self.from_url(self.name), timeout=POLL_TIMEOUT)
         except Exception as msg:
             self._socket = None
-            raise SerialException("Could not open port {}: {}".format(self.portstr, msg))
+            raise SerialException("Could not open port {}: {}".format(self.name, msg))
         # after connecting, switch to non-blocking, we're using select
         self._socket.setblocking(False)
 

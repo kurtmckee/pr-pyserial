@@ -326,7 +326,7 @@ class Serial(SerialBase, PlatformSpecific):
         self.fd = None
         # open
         try:
-            self.fd = os.open(self.portstr, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+            self.fd = os.open(self.name, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
         except OSError as msg:
             self.fd = None
             raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))
@@ -796,11 +796,6 @@ class Serial(SerialBase, PlatformSpecific):
             termios.tcflow(self.fd, termios.TCOON)
         else:
             termios.tcflow(self.fd, termios.TCOOFF)
-
-    def nonblocking(self):
-        """DEPRECATED - has no use"""
-        import warnings
-        warnings.warn("nonblocking() has no effect, already nonblocking", DeprecationWarning)
 
 
 class PosixPollSerial(Serial):

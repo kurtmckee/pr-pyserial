@@ -189,8 +189,7 @@ class SerialBase(io.RawIOBase):
                  write_timeout=None,
                  dsrdtr=False,
                  inter_byte_timeout=None,
-                 exclusive=None,
-                 **kwargs):
+                 exclusive=None):
         """\
         Initialize comm port object. If a "port" is given, then the port will be
         opened immediately. Otherwise a Serial port object in closed state
@@ -198,7 +197,6 @@ class SerialBase(io.RawIOBase):
         """
 
         self.is_open = False
-        self.portstr = None
         self.name = None
 
         # logging disabled by default but can be set to a Logger instance after __init__
@@ -236,14 +234,6 @@ class SerialBase(io.RawIOBase):
         self.inter_byte_timeout = inter_byte_timeout
         self.exclusive = exclusive
 
-        # watch for backward compatible kwargs
-        if 'writeTimeout' in kwargs:
-            self.write_timeout = kwargs.pop('writeTimeout')
-        if 'interCharTimeout' in kwargs:
-            self.inter_byte_timeout = kwargs.pop('interCharTimeout')
-        if kwargs:
-            raise ValueError('unexpected keyword arguments: {!r}'.format(kwargs))
-
         if port is not None:
             self.open()
 
@@ -273,9 +263,8 @@ class SerialBase(io.RawIOBase):
         was_open = self.is_open
         if was_open:
             self.close()
-        self.portstr = port
         self._port = port
-        self.name = self.portstr
+        self.name = self.port
         if was_open:
             self.open()
 
@@ -530,7 +519,7 @@ class SerialBase(io.RawIOBase):
 
     def __repr__(self):
         """String representation of the current port settings and its state."""
-        return '{name}<id=0x{id:x}, open={p.is_open}>(port={p.portstr!r}, ' \
+        return '{name}<id=0x{id:x}, open={p.is_open}>(name={p.name!r}, ' \
                'baudrate={p.baudrate!r}, bytesize={p.bytesize!r}, parity={p.parity!r}, ' \
                'stopbits={p.stopbits!r}, timeout={p.timeout!r}, xonxoff={p.xonxoff!r}, ' \
                'rtscts={p.rtscts!r}, dsrdtr={p.dsrdtr!r})'.format(
@@ -594,67 +583,6 @@ class SerialBase(io.RawIOBase):
         self.break_condition = True
         time.sleep(duration)
         self.break_condition = False
-
-    #  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-    # backwards compatibility / deprecated functions
-
-    def flushInput(self):
-        self.reset_input_buffer()
-
-    def flushOutput(self):
-        self.reset_output_buffer()
-
-    def inWaiting(self):
-        return self.in_waiting
-
-    def sendBreak(self, duration=0.25):
-        self.send_break(duration)
-
-    def setRTS(self, value=1):
-        self.rts = value
-
-    def setDTR(self, value=1):
-        self.dtr = value
-
-    def getCTS(self):
-        return self.cts
-
-    def getDSR(self):
-        return self.dsr
-
-    def getRI(self):
-        return self.ri
-
-    def getCD(self):
-        return self.cd
-
-    def setPort(self, port):
-        self.port = port
-
-    @property
-    def writeTimeout(self):
-        return self.write_timeout
-
-    @writeTimeout.setter
-    def writeTimeout(self, timeout):
-        self.write_timeout = timeout
-
-    @property
-    def interCharTimeout(self):
-        return self.inter_byte_timeout
-
-    @interCharTimeout.setter
-    def interCharTimeout(self, interCharTimeout):
-        self.inter_byte_timeout = interCharTimeout
-
-    def getSettingsDict(self):
-        return self.get_settings()
-
-    def applySettingsDict(self, d):
-        self.apply_settings(d)
-
-    def isOpen(self):
-        return self.is_open
 
     #  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
     # additional functionality

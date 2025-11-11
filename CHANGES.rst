@@ -837,3 +837,32 @@ Removed:
 
 - Remove support for Jython.
 - Remove support for IronPython.
+- Remove all deprecated methods and attributes.
+
+  - Remove ``.nonblocking()`` (POSIX only).
+  - Remove ``.portstr`` (use ``.name``).
+  - Remove ``.inWaiting()`` (use ``.in_waiting``).
+  - Remove ``isOpen()`` (use ``.is_open``).
+  - Remove ``.writeTimeout`` (use ``.write_timeout``).
+  - Remove ``.interCharTimeout`` (use ``.inter_byte_timeout``).
+  - Remove ``.sendBreak`` (use ``.send_break``).
+  - Remove ``.flushInput()`` (use ``.reset_input_buffer()``).
+  - Remove ``.flushOutput()`` (use ``.reset_output_buffer()``).
+  - Remove ``.setBreak()`` (use ``.break_condition()``).
+  - Remove ``.setRTS()`` (use ``.rts``).
+  - Remove ``.setDTR()`` (use ``.dtr``).
+  - Remove ``.getCTS()`` (use ``.cts``).
+  - Remove ``.getDSR()`` (use ``.dsr``).
+  - Remove ``.getRI()`` (use ``.ri``).
+  - Remove ``.getCD()`` (use ``.cd``).
+  - Remove ``.getSettingsDict()`` (use ``.get_settings()``).
+  - Remove ``.applySettingsDict()`` (use ``.apply_settings()``).
+  - Remove ``.outWaiting()`` (use ``.out_waiting``).
+  - Remove ``.setXON()`` (use ``.set_output_flow_control()``).
+  - Remove ``.flowControlOut()`` (use ``.set_input_flow_control()``).
+  - Remove ``.rtsToggle`` (Windows only; use ``.rs485_mode``).
+
+- Remove all deprecated initialization parameters.
+
+  - Remove ``writeTimeout`` (use ``write_timeout``).
+  - Remove ``interCharTimeout`` (use ``inter_byte_timeout``).
