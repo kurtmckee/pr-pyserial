@@ -35,7 +35,7 @@
 # - does not negotiate BINARY or COM_PORT_OPTION for his side but at least
 #   acknowledges that the client activates these options
 # - The configuration may be that the server prints a banner. As this client
-#   implementation does a flushInput on connect, this banner is hidden from
+#   implementation does a reset_input_buffer on connect, this banner is hidden from
 #   the user application.
 # - NOTIFY_MODEMSTATE: the poll interval of the server seems to be one
 #   second.
@@ -411,11 +411,11 @@ class Serial(SerialBase):
         if self.is_open:
             raise SerialException("Port is already open.")
         try:
-            self._socket = socket.create_connection(self.from_url(self.portstr), timeout=5)  # XXX good value?
+            self._socket = socket.create_connection(self.from_url(self.name), timeout=5)  # XXX good value?
             self._socket.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
         except Exception as msg:
             self._socket = None
-            raise SerialException("Could not open port {}: {}".format(self.portstr, msg))
+            raise SerialException("Could not open port {}: {}".format(self.name, msg))
 
         # use a thread save queue as buffer. it also simplifies implementing
         # the read timeout
@@ -498,9 +498,6 @@ class Serial(SerialBase):
         """Set communication parameters on opened port."""
         if self._socket is None:
             raise SerialException("Can only operate on open ports")
-
-        # if self._timeout != 0 and self._interCharTimeout is not None:
-            # XXX
 
         if self._write_timeout is not None:
             raise NotImplementedError('write_timeout is currently not supported')

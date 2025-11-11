@@ -530,7 +530,7 @@ class SerialBase(io.RawIOBase):
 
     def __repr__(self):
         """String representation of the current port settings and its state."""
-        return '{name}<id=0x{id:x}, open={p.is_open}>(port={p.portstr!r}, ' \
+        return '{name}<id=0x{id:x}, open={p.is_open}>(name={p.name!r}, ' \
                'baudrate={p.baudrate!r}, bytesize={p.bytesize!r}, parity={p.parity!r}, ' \
                'stopbits={p.stopbits!r}, timeout={p.timeout!r}, xonxoff={p.xonxoff!r}, ' \
                'rtscts={p.rtscts!r}, dsrdtr={p.dsrdtr!r})'.format(

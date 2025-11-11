@@ -142,7 +142,7 @@ class Test2_Forever(unittest.TestCase):
     def tearDown(self):
         self.s.close()
 
-    def test1_inWaitingEmpty(self):
+    def test1_in_waiting_empty(self):
         """no timeout: after port open, the input buffer must be empty (in_waiting)"""
         self.assertEqual(self.s.in_waiting, 0, "expected empty buffer")
 
@@ -208,7 +208,7 @@ class Test_MoreTimeouts(unittest.TestCase):
         self.s.read(3000)
         self.s.close()
 
-    def test_WriteTimeout(self):
+    def test_write_timeout(self):
         """Test write() timeout."""
         # use xonxoff setting and the loop-back adapter to switch traffic on hold
         self.s.port = PORT

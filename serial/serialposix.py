@@ -326,7 +326,7 @@ class Serial(SerialBase, PlatformSpecific):
         self.fd = None
         # open
         try:
-            self.fd = os.open(self.portstr, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+            self.fd = os.open(self.name, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
         except OSError as msg:
             self.fd = None
             raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))

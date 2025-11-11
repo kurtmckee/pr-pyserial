@@ -82,7 +82,7 @@ class Serial(SerialBase):
 
         self._hid_handle = hid.device()
         try:
-            portpath = self.from_url(self.portstr)
+            portpath = self.from_url(self.name)
             self._hid_handle.open_path(portpath)
         except OSError as msg:
             raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))
