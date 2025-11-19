@@ -94,7 +94,7 @@ Parity on Raspberry Pi
     The Raspi has one full UART and a restricted one. On devices with built
     in wireless (WIFI/BT) use the restricted one on the GPIO header pins.
     If enhanced features are required, it is possible to swap UARTs, see
-    https://www.raspberrypi.org/documentation/configuration/uart.md
+    https://www.raspberrypi.com/documentation/computers/configuration.html#configure-uarts
 
 Support for Python 2.6 or earlier
     Support for older Python releases than 2.7 will not return to pySerial 3.x.
@@ -102,13 +102,13 @@ Support for Python 2.6 or earlier
     Python 2.6 or earlier, it is recommend to use pySerial `2.7`_
     (or any 2.x version).
 
-.. _`2.7`: https://pypi.python.org/pypi/pyserial/2.7
+.. _`2.7`: https://pypi.org/project/pyserial/2.7/
 
 
 Related software
 ================
 
-com0com - http://com0com.sourceforge.net/
+com0com - https://com0com.sourceforge.net/
     Provides virtual serial ports for Windows.
 
 

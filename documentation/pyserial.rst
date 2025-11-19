@@ -19,13 +19,12 @@ Other pages (online)
 
 - `project page on GitHub`_
 - `Download Page`_ with releases (PyPi)
-- This page, when viewed online is at https://pyserial.readthedocs.io/en/latest/ or
-  http://pythonhosted.org/pyserial/ .
+- This page, when viewed online is at `<https://pyserial.readthedocs.io/en/latest/>`_.
 
-.. _Python: http://python.org/
+.. _Python: https://www.python.org/
 .. _LICENSE: appendix.html#license
 .. _`project page on GitHub`: https://github.com/pyserial/pyserial/
-.. _`Download Page`: http://pypi.python.org/pypi/pyserial
+.. _`Download Page`: https://pypi.org/project/pyserial/
 
 
 Features
@@ -86,12 +85,12 @@ pySerial can be installed from Conda::
 Currently the default conda channel will provide version 3.4 whereas the
 conda-forge channel provides the current 3.x version.
 
-Conda: https://www.continuum.io/downloads
+Conda: `<https://www.anaconda.com/download>`_
 
 From source (zip/tar.gz or checkout)
 ------------------------------------
-Download the archive from http://pypi.python.org/pypi/pyserial or
-https://github.com/pyserial/pyserial/releases.
+Download the archive from `<https://pypi.org/project/pyserial/>`_ or
+`<https://github.com/pyserial/pyserial/releases>`_.
 Unpack the archive, enter the ``pyserial-x.y`` directory and run::
 
     pip install .
@@ -111,12 +110,12 @@ Note that some distributions may package an older version of pySerial.
 These packages are created and maintained by developers working on
 these distributions.
 
-.. _PyPi: http://pypi.python.org/pypi/pyserial
+.. _PyPi: https://pypi.org/project/pyserial/
 
 
 References
 ==========
-* Python: http://www.python.org/
+* Python: https://www.python.org/
 
 
 Older Versions
@@ -134,7 +133,7 @@ win32all). WinXP is supported up to 3.0.1.
 
 
 .. _`old download`: https://sourceforge.net/projects/pyserial/files/pyserial/
-.. _download: https://pypi.python.org/simple/pyserial/
-.. _pywin32: http://pypi.python.org/pypi/pywin32
-.. _`2.7`: https://pypi.python.org/pypi/pyserial/2.7
+.. _download: https://pypi.org/simple/pyserial/
+.. _pywin32: https://pypi.org/project/pywin32/
+.. _`2.7`: https://pypi.org/project/pyserial/2.7/
 .. _`1.21`: https://sourceforge.net/projects/pyserial/files/pyserial/1.21/pyserial-1.21.zip/download
