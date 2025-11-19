@@ -14,12 +14,11 @@ Other pages (online)
 
 - `project page on GitHub`_
 - `Download Page`_ with releases
-- This page, when viewed online is at https://pyserial.readthedocs.io/en/latest/ or
-  http://pythonhosted.org/pyserial/ .
+- This page, when viewed online, is at `<https://pyserial.readthedocs.io/en/latest/>`_.
 
-.. _Python: http://python.org/
+.. _Python: https://www.python.org/
 .. _`project page on GitHub`: https://github.com/pyserial/
-.. _`Download Page`: http://pypi.python.org/pypi/pyserial
+.. _`Download Page`: https://pypi.org/project/pyserial/
 
 
 Contents:

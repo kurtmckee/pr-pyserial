@@ -15,7 +15,7 @@
 # List all of the callout devices in OS/X by querying IOKit.
 
 # See the following for a reference of how to do this:
-# http://developer.apple.com/library/mac/#documentation/DeviceDrivers/Conceptual/WorkingWSerial/WWSerial_SerialDevs/SerialDevices.html#//apple_ref/doc/uid/TP30000384-CIHGEAFD
+# https://developer.apple.com/library/archive/documentation/DeviceDrivers/Conceptual/WorkingWSerial/WWSerial_SerialDevs/SerialDevices.html#//apple_ref/doc/uid/TP30000384-CIHGEAFD
 
 # More help from darwin_hid.py
 

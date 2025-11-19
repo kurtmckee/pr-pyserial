@@ -1306,8 +1306,8 @@ is provided via a separate distribution `pyserial-asyncio`_.
 
 It is currently under development, see:
 
-- http://pyserial-asyncio.readthedocs.io/
+- https://pyserial-asyncio.readthedocs.io/en/latest/
 - https://github.com/pyserial/pyserial-asyncio
 
-.. _`pyserial-asyncio`: https://pypi.python.org/pypi/pyserial-asyncio
+.. _`pyserial-asyncio`: https://pypi.org/project/pyserial-asyncio/
 

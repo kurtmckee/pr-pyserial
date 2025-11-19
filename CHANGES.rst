@@ -945,7 +945,7 @@ v1.0 - 2002-02-13
 =================
 
 - First public release.
-- Split from the pybsl application (see http://mspgcc.sourceforge.net)
+- Split from the pybsl application (see https://sourceforge.net/projects/mspgcc/)
 
 **New Features**
 

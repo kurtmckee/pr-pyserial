@@ -197,6 +197,5 @@ latex_logo = 'pyserial.png'
 
 # for external links to standard library
 intersphinx_mapping = {
-        #~ 'python': ('http://docs.python.org', None),
-        'py': ('http://docs.python.org', None),
+        'py': ('https://docs.python.org/3/', None),
         }
