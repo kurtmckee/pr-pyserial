@@ -164,10 +164,14 @@ Native ports
         :return: Bytes read from the port.
         :rtype: bytes
 
-        Read until an expected sequence is found ('\\n' by default), the size
-        is exceeded or until timeout occurs. If a timeout is set it may
-        return fewer characters than requested. With no timeout it will block
-        until the requested number of bytes is read.
+        Read until the *expected* sequence is found (``b'\n'`` by default),
+        or *size* bytes have been received, or the read timeout has elapsed.
+        If a timeout is set, it may return fewer characters than requested.
+        With no timeout it will block until the *expected* sequence has been read
+        or *size* bytes have been read.
+
+        If termination is due to reading the *expected* sequence,
+        that sequence is included at the end of the returned bytes.
 
         .. versionchanged:: 2.5
             Returns an instance of :class:`bytes` when available (Python 2.6
