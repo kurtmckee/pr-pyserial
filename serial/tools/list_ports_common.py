@@ -25,11 +25,10 @@ def numsplit(text):
     for group in re.split(r'(\d+)', text):
         if group:
             try:
-                group = int(group)
+                result.append((int(group),))
             except ValueError:
-                pass
-            result.append(group)
-    return result
+                result.append(tuple(b for b in group.encode('utf-8')))
+    return tuple(result)
 
 
 class ListPortInfo(object):
@@ -69,7 +68,7 @@ class ListPortInfo(object):
             ' SER={}'.format(self.serial_number) if self.serial_number is not None else '',
             ' LOCATION={}'.format(self.location) if self.location is not None else '')
 
-    def apply_usb_info(self):
+    def apply_usb_info(self):  # pragma: nocover
         """update description and hwid from USB data"""
         self.description = self.usb_description()
         self.hwid = self.usb_info()
@@ -117,5 +116,5 @@ def list_links(devices):
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # test
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: nocover
     print(ListPortInfo('dummy'))
