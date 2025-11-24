@@ -289,7 +289,8 @@ def comports(include_links=False):
                 locationID = get_int_property(usb_device, "locationID", kCFNumberSInt32Type)
                 info.location = location_to_string(locationID)
                 info.interface = search_for_locationID_in_interfaces(serial_interfaces, locationID)
-                info.apply_usb_info()
+                info.description = info.usb_description()
+                info.hwid = info.usb_info()
             ports.append(info)
     return ports
 
