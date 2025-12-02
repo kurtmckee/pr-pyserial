@@ -681,6 +681,10 @@ class Serial(SerialBase, PlatformSpecific):
             except termios.error as e:
                 if e.args[0] == errno.EINTR:
                     continue
+                if e.args[0] == errno.ENOTTY:
+                    # The device is not a TTY.
+                    # This can happen on Cygwin pseudo TTYs, for example.
+                    break
                 raise
 
     def _reset_input_buffer(self):
