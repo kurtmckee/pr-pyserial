@@ -1,0 +1,420 @@
+{
+  "metadata": {
+    "context": {
+      "description": "The builtin /dev/ttyS0 on Ubuntu 24.04 running Linux kernel 6.14.0"
+    },
+    "generation_timestamp": "2025-12-06",
+    "platform": {
+      "platform": "Linux-6.14.0-36-generic-x86_64-with-glibc2.39",
+      "python_implementation": "CPython",
+      "system": "Linux",
+      "uname": {
+        "system": "Linux",
+        "release": "6.14.0-36-generic",
+        "version": "#36~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Oct 15 15:45:17 UTC 2",
+        "machine": "x86_64",
+        "processor": "x86_64"
+      },
+      "version": "#36~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Oct 15 15:45:17 UTC 2",
+      "win32_ver": {
+        "release": "",
+        "version": "",
+        "csd": "",
+        "ptype": ""
+      },
+      "win32_edition": null,
+      "mac_ver": {
+        "release": "",
+        "versioninfo": {
+          "version": "",
+          "dev_stage": "",
+          "non_release_version": ""
+        },
+        "machine": ""
+      }
+    },
+    "sys": {
+      "platform": "linux",
+      "version": "3.13.10 (main, Dec  3 2025, 09:35:05) [GCC 13.3.0]"
+    }
+  },
+  "filesystem": [
+    {
+      "path": "/dev/ttyS0",
+      "type": "char_device"
+    },
+    {
+      "path": "/sys/class/tty/ttyS0",
+      "type": "symlink",
+      "realpath": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/driver",
+      "type": "symlink",
+      "realpath": "/sys/bus/platform/drivers/serial8250"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/driver_override",
+      "type": "file",
+      "os_error": null,
+      "contents": "(null)\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/modalias",
+      "type": "file",
+      "os_error": null,
+      "contents": "platform:serial8250\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/power",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/driver",
+      "type": "symlink",
+      "realpath": "/sys/bus/serial-base/drivers/ctrl"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/power",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/driver",
+      "type": "symlink",
+      "realpath": "/sys/bus/serial-base/drivers/port"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/power",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/subsystem",
+      "type": "symlink",
+      "realpath": "/sys/bus/serial-base"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0/close_delay",
+      "type": "file",
+      "os_error": null,
+      "contents": "50\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0/closing_wait",
+      "type": "file",
+      "os_error": null,
+      "contents": "3000\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0/console",
+      "type": "file",
+      "os_error": null,
+      "contents": "N\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0/custom_divisor",
+      "type": "file",
+      "os_error": null,
+      "contents": "0\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0/dev",
+      "type": "file",
+      "os_error": null,
+      "contents": "4:64\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0/device",
+      "type": "symlink",
+      "realpath": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0/flags",
+      "type": "file",
+      "os_error": null,
+      "contents": "0x10000040\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0/io_type",
+      "type": "file",
+      "os_error": null,
+      "contents": "0\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0/iomem_base",
+      "type": "file",
+      "os_error": null,
+      "contents": "0x0\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0/iomem_reg_shift",
+      "type": "file",
+      "os_error": null,
+      "contents": "0\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0/irq",
+      "type": "file",
+      "os_error": null,
+      "contents": "4\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0/line",
+      "type": "file",
+      "os_error": null,
+      "contents": "0\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0/port",
+      "type": "file",
+      "os_error": null,
+      "contents": "0x3F8\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0/power",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0/subsystem",
+      "type": "symlink",
+      "realpath": "/sys/class/tty"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0/type",
+      "type": "file",
+      "os_error": null,
+      "contents": "0\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0/uartclk",
+      "type": "file",
+      "os_error": null,
+      "contents": "1843200\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0/uevent",
+      "type": "file",
+      "os_error": null,
+      "contents": "MAJOR=4\nMINOR=64\nDEVNAME=ttyS0\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/tty/ttyS0/xmit_fifo_size",
+      "type": "file",
+      "os_error": null,
+      "contents": "0\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.0/uevent",
+      "type": "file",
+      "os_error": null,
+      "contents": "DEVTYPE=port\nDRIVER=port\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.1",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.10",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.11",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.12",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.13",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.14",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.15",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.16",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.17",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.18",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.19",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.2",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.20",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.21",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.22",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.23",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.24",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.25",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.26",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.27",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.28",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.29",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.3",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.30",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.31",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.4",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.5",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.6",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.7",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.8",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/serial8250:0.9",
+      "type": "dir"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/subsystem",
+      "type": "symlink",
+      "realpath": "/sys/bus/serial-base"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/serial8250:0/uevent",
+      "type": "file",
+      "os_error": null,
+      "contents": "DEVTYPE=ctrl\nDRIVER=ctrl\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/subsystem",
+      "type": "symlink",
+      "realpath": "/sys/bus/platform"
+    },
+    {
+      "path": "/sys/devices/platform/serial8250/uevent",
+      "type": "file",
+      "os_error": null,
+      "contents": "DRIVER=serial8250\nMODALIAS=platform:serial8250\n",
+      "is_truncated": false,
+      "encoding": "iso-8859-1"
+    }
+  ]
+}
