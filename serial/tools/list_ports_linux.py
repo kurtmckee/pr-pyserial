@@ -8,28 +8,29 @@
 #
 # SPDX-License-Identifier:    BSD-3-Clause
 
-from __future__ import absolute_import
-
 import glob
 import os
+
 from serial.tools import list_ports_common
 
 
 class SysFS(list_ports_common.ListPortInfo):
     """Wrapper for easy sysfs access and device info"""
 
-    def __init__(self, device):
-        super(SysFS, self).__init__(device)
+    def __init__(self, device: str) -> None:
+        super().__init__(device)
         # special handling for links
-        if device is not None and os.path.islink(device):
+        if os.path.islink(device):
             device = os.path.realpath(device)
             is_link = True
         else:
             is_link = False
         self.usb_device_path = None
-        if os.path.exists('/sys/class/tty/{}/device'.format(self.name)):
-            self.device_path = os.path.realpath('/sys/class/tty/{}/device'.format(self.name))
-            self.subsystem = os.path.basename(os.path.realpath(os.path.join(self.device_path, 'subsystem')))
+        if os.path.exists(f'/sys/class/tty/{self.name}/device'):
+            self.device_path = os.path.realpath(f'/sys/class/tty/{self.name}/device')
+            self.subsystem = os.path.basename(
+                os.path.realpath(os.path.join(self.device_path, 'subsystem')),
+            )
         else:
             self.device_path = None
             self.subsystem = None
@@ -61,12 +62,11 @@ class SysFS(list_ports_common.ListPortInfo):
             self.product = self.read_line(self.usb_device_path, 'product')
             self.interface = self.read_line(self.usb_interface_path, 'interface')
 
-        if self.subsystem in ('usb', 'usb-serial'):
+        # Transform .description and .hwid keys.
+        if self.subsystem in ('usb', 'usb-serial'):  # USB
             self.description = self.usb_description()
             self.hwid = self.usb_info()
-
-        #~ elif self.subsystem in ('pnp', 'amba'):  # PCI based devices, raspi
-        elif self.subsystem == 'pnp':  # PCI based devices
+        elif self.subsystem == 'pnp':  # PCI-based devices
             self.description = self.name
             self.hwid = self.read_line(self.device_path, 'id')
         elif self.subsystem == 'amba':  # raspi
@@ -74,41 +74,48 @@ class SysFS(list_ports_common.ListPortInfo):
             self.hwid = os.path.basename(self.device_path)
 
         if is_link:
-            self.hwid += ' LINK={}'.format(device)
+            self.hwid += f' LINK={device}'
 
-    def read_line(self, *args):
+    @staticmethod
+    def read_line(arg: str, *args: str) -> str | None:
         """\
         Helper function to read a single line from a file.
         One or more parameters are allowed, they are joined with os.path.join.
-        Returns None on errors..
+        Returns None on errors.
         """
         try:
-            with open(os.path.join(*args)) as f:
+            with open(os.path.join(arg, *args)) as f:
                 line = f.readline().strip()
             return line
-        except IOError:
+        except OSError:
             return None
 
 
-def comports(include_links=False):
+_known_device_patterns = (
+    # These patterns are tested in the test suite.
+    '/dev/ttyS*',     # built-in serial ports
+    '/dev/ttyUSB*',   # usb-serial with own driver
+    '/dev/ttyACM*',   # usb-serial with CDC-ACM profile
+    #
+    # These patterns are currently untested. If you have one of these devices,
+    # run the pyserial-generate-test-asset command and file an issue.
+    '/dev/ttyXRUSB*', # xr-usb-serial port exar (DELL Edge 3001)
+    '/dev/ttyAMA*',   # ARM internal port (raspi)
+    '/dev/rfcomm*',   # BT serial devices
+    '/dev/ttyAP*',    # Advantech multi-port serial controllers
+    '/dev/ttyGS*',    # https://www.kernel.org/doc/Documentation/usb/gadget_serial.txt
+)
+
+
+def comports(include_links: bool = False) -> list[SysFS]:
     devices = set()
-    devices.update(glob.glob('/dev/ttyS*'))     # built-in serial ports
-    devices.update(glob.glob('/dev/ttyUSB*'))   # usb-serial with own driver
-    devices.update(glob.glob('/dev/ttyXRUSB*')) # xr-usb-serial port exar (DELL Edge 3001)
-    devices.update(glob.glob('/dev/ttyACM*'))   # usb-serial with CDC-ACM profile
-    devices.update(glob.glob('/dev/ttyAMA*'))   # ARM internal port (raspi)
-    devices.update(glob.glob('/dev/rfcomm*'))   # BT serial devices
-    devices.update(glob.glob('/dev/ttyAP*'))    # Advantech multi-port serial controllers
-    devices.update(glob.glob('/dev/ttyGS*'))    # https://www.kernel.org/doc/Documentation/usb/gadget_serial.txt
+    for pattern in _known_device_patterns:
+        devices.update(glob.glob(pattern))
 
     if include_links:
         devices.update(list_ports_common.list_links(devices))
-    return [info
-            for info in [SysFS(d) for d in devices]
-            if info.subsystem != "platform"]    # hide non-present internal serial ports
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# test
-if __name__ == '__main__':
-    for info in sorted(comports()):
-        print("{0}: {0.subsystem}".format(info))
+    return [
+        info
+        for info in [SysFS(d) for d in devices]
+        if info.subsystem != "platform"  # hide non-present internal serial ports
+    ]
