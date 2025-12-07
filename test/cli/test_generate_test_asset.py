@@ -3,9 +3,9 @@ import pathlib
 
 import pytest
 
-import serial.tools.test_asset_generator
-import serial.tools.test_asset_generator._common as common
-import serial.tools.test_asset_generator._sysfs as sysfs
+import serial.tools.generate_test_asset
+import serial.tools.generate_test_asset._common as common
+import serial.tools.generate_test_asset._sysfs as sysfs
 
 
 @pytest.fixture
@@ -27,7 +27,7 @@ def bogus_platform(monkeypatch):
     }
     monkeypatch.setattr("sys.platform", "bogus")
     monkeypatch.setattr(
-        serial.tools.test_asset_generator,
+        serial.tools.generate_test_asset,
         "_get_platform_specific_info_getter",
         lambda: (lambda *_: info),
     )
@@ -70,7 +70,7 @@ def test_asset_generator_uses_stdout(fs, bogus_platform, monkeypatch, capsys):
     # Patch the CLI arguments to write to STDOUT.
     monkeypatch.setattr("sys.argv", ["executable-name", "-o", "-", "bogus"])
 
-    exit_code = serial.tools.test_asset_generator.main()
+    exit_code = serial.tools.generate_test_asset.main()
     assert exit_code == 0
     stdout, _ = capsys.readouterr()
     # The result should be parseable as JSON.
@@ -83,7 +83,7 @@ def test_asset_generator_write_to_file(fs, bogus_platform, monkeypatch, capsys):
     # Patch the CLI arguments to write to STDOUT.
     monkeypatch.setattr("sys.argv", ["executable-name", "-o", "output.json", "bogus"])
 
-    exit_code = serial.tools.test_asset_generator.main()
+    exit_code = serial.tools.generate_test_asset.main()
     assert exit_code == 0
     stdout, _ = capsys.readouterr()
     assert stdout == ""

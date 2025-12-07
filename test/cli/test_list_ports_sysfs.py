@@ -4,19 +4,15 @@ import pytest
 
 import serial.tools.list_ports_linux
 
-from .conftest import require_test_asset
-
-
 if sys.platform.lower().startswith('win32'):
     msg = "Skipping sysfs tests due to win32 sys.platform"
     pytest.skip(msg, allow_module_level=True)
 
 
-@require_test_asset("assets/sysfs/ATEN--UC-232A.json")
-def test_aten_uc_232a_pl2303(test_asset, prepare_filesystem):
+def test_aten_uc_232a_pl2303(prepare_filesystem):
     """Test sysfs loading for the ATEN UC-232A USB-to-serial port adapter."""
 
-    prepare_filesystem(test_asset)
+    prepare_filesystem("assets/sysfs/ATEN--UC-232A.json")
 
     info = serial.tools.list_ports_linux.SysFS("/dev/ttyUSB0")
 
@@ -41,11 +37,10 @@ def test_aten_uc_232a_pl2303(test_asset, prepare_filesystem):
     assert ports[0].device == "/dev/ttyUSB0"
 
 
-@require_test_asset("assets/sysfs/SparkFun--IoT-RedBoard-RP2350.json")
-def test_sparkfun_iot_redboard_rp2350(test_asset, prepare_filesystem):
+def test_sparkfun_iot_redboard_rp2350(prepare_filesystem):
     """Test sysfs loading for the SparkFun IoT RedBoard RP2350."""
 
-    prepare_filesystem(test_asset)
+    prepare_filesystem("assets/sysfs/SparkFun--IoT-RedBoard-RP2350.json")
 
     info = serial.tools.list_ports_linux.SysFS("/dev/ttyACM0")
 
@@ -70,11 +65,10 @@ def test_sparkfun_iot_redboard_rp2350(test_asset, prepare_filesystem):
     assert ports[0].device == "/dev/ttyACM0"
 
 
-@require_test_asset("assets/sysfs/Linux-6.14.0--ttyS0.json")
-def test_linux_6_14_0_tty_s0(test_asset, prepare_filesystem):
+def test_linux_6_14_0_tty_s0(prepare_filesystem):
     """Test sysfs loading of a Linux 6.14.0 builtin port."""
 
-    prepare_filesystem(test_asset)
+    prepare_filesystem("assets/sysfs/Linux-6.14.0--ttyS0.json")
 
     info = serial.tools.list_ports_linux.SysFS("/dev/ttyS0")
 
