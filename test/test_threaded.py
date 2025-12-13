@@ -8,17 +8,17 @@
 Test serial.threaded related functionality.
 """
 
-import os
 import queue
 import unittest
+
 import serial
 import serial.threaded
-
 
 # on which port should the tests be performed:
 PORT = 'loop://'
 
-class Test_threaded(unittest.TestCase):
+
+class TestThreaded(unittest.TestCase):
     """Test serial.threaded related functionality"""
 
     def test_line_reader(self):
@@ -66,14 +66,3 @@ def retrieve_item(target_queue: queue.Queue) -> str | bytes:
     line = target_queue.get(timeout=1)
     target_queue.task_done()
     return line
-
-
-if __name__ == '__main__':
-    import sys
-    sys.stdout.write(__doc__)
-    if len(sys.argv) > 1:
-        PORT = sys.argv[1]
-    sys.stdout.write("Testing port: {!r}\n".format(PORT))
-    sys.argv[1:] = ['-v']
-    # When this module is executed from the command-line, it runs all its tests
-    unittest.main()
