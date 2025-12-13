@@ -22,20 +22,12 @@ On a 9 pole DSUB these are the pins (2-3) (4-6) (7-8)
 """
 
 import unittest
-import sys
 import serial
 
 #~ print serial.VERSION
 
 # on which port should the tests be performed:
 PORT = 'loop://'
-
-if sys.version_info >= (3, 0):
-    def data(string):
-        return bytes(string, 'latin1')
-else:
-    def data(string):
-        return string
 
 
 class Test_Readline(unittest.TestCase):
@@ -64,15 +56,6 @@ class Test_Readline(unittest.TestCase):
                 [serial.to_bytes([0x31, 0x0a]), serial.to_bytes([0x32, 0x0a]), serial.to_bytes([0x33, 0x0a])]
                 )
 
-    def test_xreadlines(self):
-        """Test xreadlines method (skipped for io based systems)"""
-        if hasattr(self.s, 'xreadlines'):
-            self.s.write(serial.to_bytes([0x31, 0x0a, 0x32, 0x0a, 0x33, 0x0a]))
-            self.assertEqual(
-                    list(self.s.xreadlines()),
-                    [serial.to_bytes([0x31, 0x0a]), serial.to_bytes([0x32, 0x0a]), serial.to_bytes([0x33, 0x0a])]
-                    )
-
     def test_for_in(self):
         """Test for line in s"""
         self.s.write(serial.to_bytes([0x31, 0x0a, 0x32, 0x0a, 0x33, 0x0a]))
@@ -83,14 +66,6 @@ class Test_Readline(unittest.TestCase):
                 lines,
                 [serial.to_bytes([0x31, 0x0a]), serial.to_bytes([0x32, 0x0a]), serial.to_bytes([0x33, 0x0a])]
                 )
-
-    def test_alternate_eol(self):
-        """Test readline with alternative eol settings (skipped for io based systems)"""
-        if hasattr(self.s, 'xreadlines'):  # test if it is our FileLike base class
-            self.s.write(serial.to_bytes("no\rno\nyes\r\n"))
-            self.assertEqual(
-                    self.s.readline(eol=serial.to_bytes("\r\n")),
-                    serial.to_bytes("no\rno\nyes\r\n"))
 
 
 if __name__ == '__main__':
