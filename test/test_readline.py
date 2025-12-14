@@ -14,7 +14,7 @@ import serial
 
 @pytest.fixture
 def port() -> typing.Iterable[serial.Serial]:
-    port_ = serial.serial_for_url("loop://", timeout=1)
+    port_ = serial.serial_for_url("loop://", timeout=0.0)
     yield port_
     port_.close()
 
