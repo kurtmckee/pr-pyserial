@@ -8,29 +8,37 @@
 Tests for utility functions of serualutil.
 """
 
-import os
-import unittest
-import serial
+import pytest
+
+import serial.serialutil
 
 
-class Test_util(unittest.TestCase):
-    """Test serial utility functions"""
-
-    def test_to_bytes(self):
-        self.assertEqual(serial.to_bytes([1, 2, 3]), b'\x01\x02\x03')
-        self.assertEqual(serial.to_bytes(b'\x01\x02\x03'), b'\x01\x02\x03')
-        self.assertEqual(serial.to_bytes(bytearray([1,2,3])), b'\x01\x02\x03')
-        # unicode is not supported test. use decode() instead of u'' syntax to be
-        # compatible to Python 3.x < 3.4
-        self.assertRaises(TypeError, serial.to_bytes, b'hello'.decode('utf-8'))
-
-    def test_iterbytes(self):
-        self.assertEqual(list(serial.iterbytes(b'\x01\x02\x03')), [b'\x01', b'\x02', b'\x03'])
+@pytest.mark.parametrize(
+    "arg, expected",
+    (
+        ([1, 2, 3], b'\x01\x02\x03'),
+        (b'\x01\x02\x03', b'\x01\x02\x03'),
+        (bytearray([1, 2, 3]), b'\x01\x02\x03'),
+        (memoryview(b'\x01\x02\x03'), b'\x01\x02\x03'),
+    )
+)
+def test_to_bytes(arg, expected):
+    assert serial.serialutil.to_bytes(arg) == expected
 
 
-if __name__ == '__main__':
-    import sys
-    sys.stdout.write(__doc__)
-    sys.argv[1:] = ['-v']
-    # When this module is executed from the command-line, it runs all its tests
-    unittest.main()
+def test_to_bytes_string():
+    with pytest.raises(TypeError, match='strings are not supported'):
+        serial.serialutil.to_bytes('hello')
+
+
+@pytest.mark.parametrize(
+    "arg, expected",
+    (
+        (b'', []),
+        (b'123', [b'1', b'2', b'3']),
+        (memoryview(b''), []),
+        (memoryview(b'123'), [b'1', b'2', b'3']),
+    )
+)
+def test_iterbytes(arg, expected):
+    assert list(serial.serialutil.iterbytes(arg)) == expected

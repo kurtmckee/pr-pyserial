@@ -7,73 +7,40 @@
 #
 # SPDX-License-Identifier:    BSD-3-Clause
 
-from __future__ import absolute_import
 
 import io
 import time
-
-# ``memoryview`` was introduced in Python 2.7 and ``bytes(some_memoryview)``
-# isn't returning the contents (very unfortunate). Therefore we need special
-# cases and test for it. Ensure that there is a ``memoryview`` object for older
-# Python versions. This is easier than making every test dependent on its
-# existence.
-try:
-    memoryview
-except (NameError, AttributeError):
-    # implementation does not matter as we do not really use it.
-    # it just must not inherit from something else we might care for.
-    class memoryview(object):   # pylint: disable=redefined-builtin,invalid-name
-        pass
-
-try:
-    unicode
-except (NameError, AttributeError):
-    unicode = str       # for Python 3, pylint: disable=redefined-builtin,invalid-name
-
-try:
-    basestring
-except (NameError, AttributeError):
-    basestring = (str,)    # for Python 3, pylint: disable=redefined-builtin,invalid-name
+import typing
 
 
-# "for byte in data" fails for python3 as it returns ints instead of bytes
-def iterbytes(b):
-    """Iterate over bytes, returning bytes instead of ints (python3)"""
-    if isinstance(b, memoryview):
-        b = b.tobytes()
-    i = 0
-    while True:
-        a = b[i:i + 1]
-        i += 1
-        if a:
-            yield a
-        else:
-            break
+def iterbytes(b: bytes | memoryview) -> typing.Iterable[bytes]:
+    """Iterate over bytes."""
+
+    yield from (bytes([b[i]]) for i in range(len(b)))
 
 
-# all Python versions prior 3.x convert ``str([17])`` to '[17]' instead of '\x11'
-# so a simple ``bytes(sequence)`` doesn't work for all versions
-def to_bytes(seq):
-    """convert a sequence to a bytes type"""
+def to_bytes(seq: bytes | bytearray | memoryview | typing.Iterable[int]) -> bytes:
+    """Convert a sequence to a bytes type."""
+
     if isinstance(seq, bytes):
         return seq
     elif isinstance(seq, bytearray):
         return bytes(seq)
     elif isinstance(seq, memoryview):
         return seq.tobytes()
-    elif isinstance(seq, unicode):
-        raise TypeError('unicode strings are not supported, please encode to bytes: {!r}'.format(seq))
+    elif isinstance(seq, str):
+        raise TypeError(f'strings are not supported, please encode to bytes: {seq!r}')
     else:
-        # handle list of integers and bytes (one or more items) for Python 2 and 3
-        return bytes(bytearray(seq))
+        # Handle lists of integers.
+        return bytes(seq)
 
 
 # create control bytes
-XON = to_bytes([17])
-XOFF = to_bytes([19])
+XON = bytes([17])
+XOFF = bytes([19])
 
-CR = to_bytes([13])
-LF = to_bytes([10])
+CR = bytes([13])
+LF = bytes([10])
 
 
 PARITY_NONE, PARITY_EVEN, PARITY_ODD, PARITY_MARK, PARITY_SPACE = 'N', 'E', 'O', 'M', 'S'
@@ -89,7 +56,7 @@ PARITY_NAMES = {
 }
 
 
-class SerialException(IOError):
+class SerialException(OSError):
     """Base class for serial port related exceptions."""
 
 
@@ -268,8 +235,8 @@ class SerialBase(io.RawIOBase):
         """\
         Change the port.
         """
-        if port is not None and not isinstance(port, basestring):
-            raise ValueError('"port" must be None or a string, not {}'.format(type(port)))
+        if port is not None and not isinstance(port, str):
+            raise ValueError(f'"port" must be None or a string, not {type(port)}')
         was_open = self.is_open
         if was_open:
             self.close()
